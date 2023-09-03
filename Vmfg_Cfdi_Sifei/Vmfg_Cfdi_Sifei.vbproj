@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clases\" />
+    <Folder Include="Img\" />
     <Folder Include="Modulos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
