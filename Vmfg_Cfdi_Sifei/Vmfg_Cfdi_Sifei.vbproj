@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\clsIni.vb" />
     <Compile Include="Inicio.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +81,8 @@
       <DependentUpon>Inicio.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modulos\modHome.vb" />
+    <Compile Include="Modulos\modMssql.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -120,9 +123,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Clases\" />
-    <Folder Include="Img\" />
-    <Folder Include="Modulos\" />
+    <Folder Include="Controlador\" />
+    <Folder Include="Modelo\" />
+    <Folder Include="Vistas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Img\Receivable.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
