@@ -33,6 +33,7 @@ Partial Class formSellos
         Me.ButtonAgregar = New System.Windows.Forms.Button()
         Me.ButtonActualizar = New System.Windows.Forms.Button()
         Me.ButtonEliminar = New System.Windows.Forms.Button()
+        Me.TextBoxRow = New System.Windows.Forms.TextBox()
         CType(Me.DataGridSellos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,18 +113,27 @@ Partial Class formSellos
         '
         'ButtonEliminar
         '
-        Me.ButtonEliminar.Location = New System.Drawing.Point(688, 168)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(12, 398)
         Me.ButtonEliminar.Name = "ButtonEliminar"
         Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
         Me.ButtonEliminar.TabIndex = 9
         Me.ButtonEliminar.Text = "Eliminar"
         Me.ButtonEliminar.UseVisualStyleBackColor = True
         '
+        'TextBoxRow
+        '
+        Me.TextBoxRow.Location = New System.Drawing.Point(663, 3)
+        Me.TextBoxRow.Name = "TextBoxRow"
+        Me.TextBoxRow.Size = New System.Drawing.Size(100, 20)
+        Me.TextBoxRow.TabIndex = 10
+        Me.TextBoxRow.Visible = False
+        '
         'formSellos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.TextBoxRow)
         Me.Controls.Add(Me.ButtonEliminar)
         Me.Controls.Add(Me.ButtonActualizar)
         Me.Controls.Add(Me.ButtonAgregar)
@@ -153,4 +163,5 @@ Partial Class formSellos
     Friend WithEvents ButtonAgregar As Button
     Friend WithEvents ButtonActualizar As Button
     Friend WithEvents ButtonEliminar As Button
+    Friend WithEvents TextBoxRow As TextBox
 End Class

@@ -23,4 +23,9 @@
         Dim formSellos As New formSellos()
         formSellos.Show()
     End Sub
+
+    Private Sub FacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónToolStripMenuItem.Click
+        Dim formSellos As New formFacturaTxt()
+        formSellos.Show()
+    End Sub
 End Class

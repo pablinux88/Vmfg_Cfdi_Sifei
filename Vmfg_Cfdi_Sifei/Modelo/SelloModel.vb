@@ -55,4 +55,16 @@ Public Class SelloModel
         Conexion.Close()
     End Sub
 
+    Public Sub EliminarSello(row As Integer)
+        Dim procedimiento As String = "sp_EliminarCfdiSellos"
+
+        Dim comando As New SqlCommand(procedimiento, Conexion)
+        comando.CommandType = CommandType.StoredProcedure
+
+        comando.Parameters.AddWithValue("@ROW", row)
+
+        Conexion.Open()
+        comando.ExecuteNonQuery()
+        Conexion.Close()
+    End Sub
 End Class

@@ -28,6 +28,8 @@ Partial Class Inicio
         Me.CertificadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.GenerarTXTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
         Me.ToolStripContainer1.SuspendLayout()
@@ -35,7 +37,7 @@ Partial Class Inicio
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónToolStripMenuItem, Me.GenerarTXTToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(800, 24)
@@ -80,6 +82,19 @@ Partial Class Inicio
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
+        'GenerarTXTToolStripMenuItem
+        '
+        Me.GenerarTXTToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónToolStripMenuItem})
+        Me.GenerarTXTToolStripMenuItem.Name = "GenerarTXTToolStripMenuItem"
+        Me.GenerarTXTToolStripMenuItem.Size = New System.Drawing.Size(82, 20)
+        Me.GenerarTXTToolStripMenuItem.Text = "Generar TXT"
+        '
+        'FacturaciónToolStripMenuItem
+        '
+        Me.FacturaciónToolStripMenuItem.Name = "FacturaciónToolStripMenuItem"
+        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.FacturaciónToolStripMenuItem.Text = "Facturación"
+        '
         'Inicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -108,4 +123,6 @@ Partial Class Inicio
     Friend WithEvents CertificadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripContainer1 As ToolStripContainer
     Friend WithEvents Label1 As Label
+    Friend WithEvents GenerarTXTToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaciónToolStripMenuItem As ToolStripMenuItem
 End Class

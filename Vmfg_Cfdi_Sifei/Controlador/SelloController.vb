@@ -16,4 +16,8 @@
     Public Sub ActualizarSello(id As String, vigencia As DateTime, estatus As String)
         _modelo.ActualizarSello(id, vigencia, estatus)
     End Sub
+
+    Public Sub EliminarSello(row As Integer)
+        _modelo.EliminarSello(row)
+    End Sub
 End Class

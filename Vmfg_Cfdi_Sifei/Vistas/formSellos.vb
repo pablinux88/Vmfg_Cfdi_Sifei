@@ -15,6 +15,7 @@ Public Class formSellos
     End Sub
 
     Private Sub LimpiarCampos()
+        TextBoxRow.Clear()
         TextBoxID.Clear()
         TextBoxVigencia.Clear()
         TextBoxEstatus.Clear()
@@ -22,9 +23,11 @@ Public Class formSellos
     Private Sub DataGridViewClientes_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridSellos.SelectionChanged
         If DataGridSellos.SelectedRows.Count > 0 Then
             Dim filaSeleccionada As DataGridViewRow = DataGridSellos.SelectedRows(0)
+            TextBoxRow.Text = filaSeleccionada.Cells("ROW").Value.ToString()
             TextBoxID.Text = filaSeleccionada.Cells("ID").Value.ToString()
             TextBoxVigencia.Text = filaSeleccionada.Cells("Vigencia").Value.ToString()
             TextBoxEstatus.Text = filaSeleccionada.Cells("Estatus").Value.ToString()
+
         End If
     End Sub
 
@@ -53,6 +56,14 @@ Public Class formSellos
         Dim estatus As String = TextBoxEstatus.Text
 
         controlador.ActualizarSello(id, vigencia, estatus)
+
+        LimpiarCampos()
+        CargarSellos()
+    End Sub
+
+    Private Sub ButtonEliminar_Click(sender As Object, e As EventArgs) Handles ButtonEliminar.Click
+        Dim row As Integer = Convert.ToInt32(TextBoxRow.Text)
+        controlador.EliminarSello(row)
 
         LimpiarCampos()
         CargarSellos()
