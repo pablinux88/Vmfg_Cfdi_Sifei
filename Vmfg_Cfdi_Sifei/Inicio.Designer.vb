@@ -26,10 +26,12 @@ Partial Class Inicio
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.ConfiguraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CertificadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.GenerarTXTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PagoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
         Me.ToolStripContainer1.SuspendLayout()
@@ -37,10 +39,12 @@ Partial Class Inicio
         '
         'MenuStrip
         '
+        Me.MenuStrip.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
+        Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónToolStripMenuItem, Me.GenerarTXTToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(1600, 40)
         Me.MenuStrip.TabIndex = 0
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -48,14 +52,27 @@ Partial Class Inicio
         '
         Me.ConfiguraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CertificadoToolStripMenuItem})
         Me.ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
-        Me.ConfiguraciónToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
+        Me.ConfiguraciónToolStripMenuItem.Size = New System.Drawing.Size(185, 36)
         Me.ConfiguraciónToolStripMenuItem.Text = "Configuración"
         '
         'CertificadoToolStripMenuItem
         '
         Me.CertificadoToolStripMenuItem.Name = "CertificadoToolStripMenuItem"
-        Me.CertificadoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CertificadoToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
         Me.CertificadoToolStripMenuItem.Text = "Certificado"
+        '
+        'GenerarTXTToolStripMenuItem
+        '
+        Me.GenerarTXTToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónToolStripMenuItem, Me.PagoToolStripMenuItem})
+        Me.GenerarTXTToolStripMenuItem.Name = "GenerarTXTToolStripMenuItem"
+        Me.GenerarTXTToolStripMenuItem.Size = New System.Drawing.Size(166, 36)
+        Me.GenerarTXTToolStripMenuItem.Text = "Generar TXT"
+        '
+        'FacturaciónToolStripMenuItem
+        '
+        Me.FacturaciónToolStripMenuItem.Name = "FacturaciónToolStripMenuItem"
+        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.FacturaciónToolStripMenuItem.Text = "Facturación"
         '
         'ToolStripContainer1
         '
@@ -63,12 +80,14 @@ Partial Class Inicio
         'ToolStripContainer1.ContentPanel
         '
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.Label1)
-        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(800, 32)
+        Me.ToolStripContainer1.ContentPanel.Margin = New System.Windows.Forms.Padding(6)
+        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(1600, 62)
         Me.ToolStripContainer1.LeftToolStripPanelVisible = False
-        Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 419)
+        Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 806)
+        Me.ToolStripContainer1.Margin = New System.Windows.Forms.Padding(6)
         Me.ToolStripContainer1.Name = "ToolStripContainer1"
         Me.ToolStripContainer1.RightToolStripPanelVisible = False
-        Me.ToolStripContainer1.Size = New System.Drawing.Size(800, 32)
+        Me.ToolStripContainer1.Size = New System.Drawing.Size(1600, 62)
         Me.ToolStripContainer1.TabIndex = 1
         Me.ToolStripContainer1.Text = "ToolStripContainer1"
         Me.ToolStripContainer1.TopToolStripPanelVisible = False
@@ -76,34 +95,39 @@ Partial Class Inicio
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 9)
+        Me.Label1.Location = New System.Drawing.Point(6, 17)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.Size = New System.Drawing.Size(77, 25)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
-        'GenerarTXTToolStripMenuItem
+        'PagoToolStripMenuItem
         '
-        Me.GenerarTXTToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónToolStripMenuItem})
-        Me.GenerarTXTToolStripMenuItem.Name = "GenerarTXTToolStripMenuItem"
-        Me.GenerarTXTToolStripMenuItem.Size = New System.Drawing.Size(82, 20)
-        Me.GenerarTXTToolStripMenuItem.Text = "Generar TXT"
+        Me.PagoToolStripMenuItem.Name = "PagoToolStripMenuItem"
+        Me.PagoToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.PagoToolStripMenuItem.Text = "Pago"
         '
-        'FacturaciónToolStripMenuItem
+        'Label2
         '
-        Me.FacturaciónToolStripMenuItem.Name = "FacturaciónToolStripMenuItem"
-        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.FacturaciónToolStripMenuItem.Text = "Facturación"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(903, 823)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(77, 25)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Label2"
         '
         'Inicio
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1600, 865)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ToolStripContainer1)
         Me.Controls.Add(Me.MenuStrip)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip
+        Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "Inicio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inicio CFDI 4.0 Sifei"
@@ -125,4 +149,6 @@ Partial Class Inicio
     Friend WithEvents Label1 As Label
     Friend WithEvents GenerarTXTToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FacturaciónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PagoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label2 As Label
 End Class

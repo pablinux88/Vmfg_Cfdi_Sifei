@@ -31,8 +31,11 @@ Public Class FacturaController
                         While reader.Read()
                             Dim factura As New FacturaModel()
                             ' Rellena los datos de FacturaModel
+
+                            factura.NumeroFactura = numeroFactura
+
                             If Not reader.IsDBNull(0) Then
-                                factura.NumeroFactura = reader.GetString(0)
+                                factura.Campo0 = reader.GetString(0)
                             End If
 
                             If Not reader.IsDBNull(1) Then
@@ -68,16 +71,32 @@ Public Class FacturaController
                             End If
 
                             If Not reader.IsDBNull(9) Then
-                                factura.Campo9 = reader.GetDecimal(9).ToString()
+                                'factura.Campo9 = reader.GetDecimal(9).ToString()
+                                Dim valorCampo9 As String = reader.GetDecimal(9).ToString()
+
+                                If valorCampo9 = "0.00" Then
+                                    factura.Campo9 = ""
+                                Else
+                                    factura.Campo9 = valorCampo9
+                                End If
                             End If
                             If Not reader.IsDBNull(10) Then
-                                factura.Campo10 = reader.GetDecimal(10).ToString()
+                                factura.Campo10 = reader.GetString(10).ToString()
                             End If
                             If Not reader.IsDBNull(11) Then
-                                factura.Campo11 = reader.GetDecimal(11).ToString()
+                                'factura.Campo11 = reader.GetDecimal(11).ToString()
+                                Dim valorCampo10 As String = reader.GetString(10)
+                                Dim valorCampo11 As String = reader.GetDecimal(11).ToString()
+
+                                ' Verifica si el valor del campo es igual a "MXN"
+                                If valorCampo10 = "MXN" Then
+                                    factura.Campo11 = "1"
+                                Else
+                                    factura.Campo11 = valorCampo11
+                                End If
                             End If
                             If Not reader.IsDBNull(12) Then
-                                factura.Campo12 = reader.GetString(12)
+                                factura.Campo12 = reader.GetDecimal(12)
                             End If
                             If Not reader.IsDBNull(13) Then
                                 factura.Campo13 = reader.GetString(13)
@@ -125,10 +144,10 @@ Public Class FacturaController
                                 factura.Campo27 = reader.GetString(27)
                             End If
                             If Not reader.IsDBNull(28) Then
-                                factura.Campo28 = reader.GetDecimal(28).ToString()
+                                factura.Campo28 = reader.GetString(28)
                             End If
                             If Not reader.IsDBNull(29) Then
-                                factura.Campo29 = reader.GetString(29)
+                                factura.Campo29 = reader.GetDecimal(29).ToString()
                             End If
                             If Not reader.IsDBNull(30) Then
                                 factura.Campo30 = reader.GetString(30)
@@ -184,66 +203,157 @@ Public Class FacturaController
                             If Not reader.IsDBNull(47) Then
                                 factura.Campo47 = reader.GetString(47)
                             End If
-
+                            If Not reader.IsDBNull(48) Then
+                                factura.Campo48 = reader.GetString(48)
+                            End If
+                            If Not reader.IsDBNull(49) Then
+                                factura.Campo49 = reader.GetString(49)
+                            End If
+                            If Not reader.IsDBNull(50) Then
+                                factura.Campo50 = reader.GetString(50)
+                            End If
+                            If Not reader.IsDBNull(51) Then
+                                factura.Campo51 = reader.GetString(51)
+                            End If
+                            If Not reader.IsDBNull(52) Then
+                                factura.Campo52 = reader.GetString(52)
+                            End If
+                            If Not reader.IsDBNull(53) Then
+                                factura.Campo53 = reader.GetString(53)
+                            End If
+                            If Not reader.IsDBNull(54) Then
+                                factura.Campo54 = reader.GetDecimal(54)
+                            End If
+                            If Not reader.IsDBNull(55) Then
+                                factura.Campo55 = reader.GetDecimal(55)
+                            End If
+                            'If Not reader.IsDBNull(56) Then
+                            '    factura.Campo56 = reader.GetString(56)
+                            'End If
+                            'If Not reader.IsDBNull(57) Then
+                            '    factura.Campo57 = reader.GetString(57)
+                            'End If
+                            'If Not reader.IsDBNull(58) Then
+                            '    factura.Campo58 = reader.GetString(58)
+                            'End If
+                            'If Not reader.IsDBNull(59) Then
+                            '    factura.Campo59 = reader.GetString(59)
+                            'End If
+                            'If Not reader.IsDBNull(60) Then
+                            '    factura.Campo60 = reader.GetString(60)
+                            'End If
                             facturaData.Add(factura)
                         End While
                     End Using
                 End Using
-
                 ' Ejecuta el procedimiento almacenado y obtiene los datos de DetalleFacturaModel
-                Dim facturaDetalleData As New List(Of DetalleFacturaModel)()
-                Using cmdDetalle As New SqlCommand("sp_ObtenerCfdiFacturaDetalle", connection)
-                    cmdDetalle.CommandType = CommandType.StoredProcedure
-                    cmdDetalle.Parameters.AddWithValue("@INVOICE_ID", numeroFactura)
-                    Using readerDetalle As SqlDataReader = cmdDetalle.ExecuteReader()
-                        While readerDetalle.Read()
-                            Dim detalle As New DetalleFacturaModel()
-                            If Not readerDetalle.IsDBNull(0) Then
-                                detalle.NumeroFactura = readerDetalle.GetString(0)
+                Dim detalleData As New List(Of DetalleFacturaModel)()
+                Using cmd As New SqlCommand("sp_ObtenerCfdiFacturaDetalle", connection)
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.AddWithValue("@INVOICE_ID", numeroFactura)
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            Dim facturaDet As New DetalleFacturaModel()
+                            ' Rellena los datos de DetalleFacturaModel
+                            facturaDet.NumeroFactura = numeroFactura
+                            If Not reader.IsDBNull(0) Then
+                                facturaDet.Campo0 = reader.GetString(0)
                             End If
 
-                            If Not readerDetalle.IsDBNull(1) Then
-                                detalle.Campo1 = readerDetalle.GetString(1)
+                            If Not reader.IsDBNull(1) Then
+                                facturaDet.Campo1 = reader.GetInt16(1)
                             End If
 
-                            If Not readerDetalle.IsDBNull(2) Then
-                                detalle.Campo2 = readerDetalle.GetInt16(2).ToString()
+                            If Not reader.IsDBNull(2) Then
+                                facturaDet.Campo2 = reader.GetDecimal(2)
+                            End If
+                            If Not reader.IsDBNull(3) Then
+                                facturaDet.Campo3 = reader.GetString(3)
+                            End If
+                            If Not reader.IsDBNull(4) Then
+                                facturaDet.Campo4 = reader.GetString(4)
+                            End If
+                            If Not reader.IsDBNull(5) Then
+                                facturaDet.Campo5 = reader.GetString(5)
+                            End If
+                            If Not reader.IsDBNull(6) Then
+                                facturaDet.Campo6 = reader.GetString(6)
+                            End If
+                            If Not reader.IsDBNull(7) Then
+                                facturaDet.Campo7 = reader.GetString(7)
+                            End If
+                            If Not reader.IsDBNull(8) Then
+                                facturaDet.Campo8 = reader.GetDecimal(8)
+                            End If
+                            If Not reader.IsDBNull(9) Then
+                                facturaDet.Campo9 = reader.GetString(9)
+                            End If
+                            If Not reader.IsDBNull(10) Then
+                                facturaDet.Campo10 = reader.GetDecimal(10)
+                            End If
+                            If Not reader.IsDBNull(11) Then
+                                facturaDet.Campo11 = reader.GetString(11)
+                            End If
+                            If Not reader.IsDBNull(12) Then
+                                facturaDet.Campo12 = reader.GetString(12)
+                            End If
+                            If Not reader.IsDBNull(13) Then
+                                facturaDet.Campo13 = reader.GetString(13)
+                            End If
+                            If Not reader.IsDBNull(14) Then
+                                facturaDet.Campo14 = reader.GetString(14)
+                            End If
+                            If Not reader.IsDBNull(15) Then
+                                facturaDet.Campo15 = reader.GetDecimal(15)
+                            End If
+                            If Not reader.IsDBNull(16) Then
+                                facturaDet.Campo16 = reader.GetString(16)
+                            End If
+                            If Not reader.IsDBNull(17) Then
+                                facturaDet.Campo17 = reader.GetString(17)
+                            End If
+                            If Not reader.IsDBNull(18) Then
+                                facturaDet.Campo18 = reader.GetString(18)
+                            End If
+                            If Not reader.IsDBNull(19) Then
+                                facturaDet.Campo19 = reader.GetDecimal(19)
                             End If
 
-                            If Not readerDetalle.IsDBNull(3) Then
-                                detalle.Campo3 = readerDetalle.GetDecimal(3).ToString()
-                            End If
+                            detalleData.Add(facturaDet)
                         End While
                     End Using
                 End Using
-
                 Try
                     ' Genera el archivo de texto
                     Using writer As New StreamWriter(rutaArchivo)
                         For Each factura As FacturaModel In facturaData
-                            Dim linea As String = $"{factura.NumeroFactura}|{factura.Campo1}|{factura.Campo2}|{factura.Campo3}" +
-            $"|{factura.Campo4}|{factura.Campo5}|{factura.Campo6}|{factura.Campo7}|{factura.Campo8}|{factura.Campo9}" +
-            $"|{factura.Campo10}|{factura.Campo11}|{factura.Campo12}|{factura.Campo13}|{factura.Campo14}|{factura.Campo15}" +
-            $"|{factura.Campo16}|{factura.Campo17}|{factura.Campo18}|{factura.Campo19}|{factura.Campo20}|{factura.Campo21}" +
-            $"|{factura.Campo22}|{factura.Campo23}|{factura.Campo24}|{factura.Campo25}|{factura.Campo26}|{factura.Campo27}" +
-            $"|{factura.Campo28}|{factura.Campo29}|{factura.Campo30}|{factura.Campo31}|{factura.Campo32}|{factura.Campo33}" +
-            $"|{factura.Campo34}|{factura.Campo35}" & vbCrLf &
-            $"{factura.Campo36}|{factura.Campo37}|{factura.Campo38}|{factura.Campo39}|{factura.Campo40}|{factura.Campo41}" +
-            $"{factura.Campo42}|{factura.Campo43}|{factura.Campo44}|{factura.Campo45}|{factura.Campo46}|{factura.Campo47}"
+                            Dim linea As String = $"{factura.Campo0}|{factura.Campo1}|{factura.Campo2}|{factura.Campo3}" +
+                                $"|{factura.Campo4}|{factura.Campo5}|{factura.Campo6}|{factura.Campo7}|{factura.Campo8}|{factura.Campo9}" +
+                                $"|{factura.Campo10}|{factura.Campo11}|{factura.Campo12}|{factura.Campo13}|{factura.Campo14}|{factura.Campo15}" +
+                                $"|{factura.Campo16}|{factura.Campo17}|{factura.Campo18}|{factura.Campo19}|{factura.Campo20}|{factura.Campo21}" +
+                                $"|{factura.Campo22}|{factura.Campo23}|{factura.Campo24}|{factura.Campo25}|{factura.Campo26}|{factura.Campo27}" +
+                                $"|{factura.Campo28}|{factura.Campo29}|{factura.Campo30}|{factura.Campo31}|{factura.Campo32}|{factura.Campo33}" +
+                                $"|{factura.Campo34}|{factura.Campo35}|{factura.Campo36}" & vbCrLf &
+                                $"{factura.Campo37}|{factura.Campo38}|{factura.Campo39}|{factura.Campo40}|{factura.Campo41}|" +
+                                $"{factura.Campo42}|{factura.Campo43}|{factura.Campo44}|{factura.Campo45}|{factura.Campo46}|{factura.Campo47}|{factura.Campo48}" & vbCrLf
 
-                            ' Busca los datos correspondientes en los detalles de la factura
-                            Dim detalles As List(Of DetalleFacturaModel) = facturaDetalleData.Where(Function(detalle) detalle.NumeroFactura = factura.NumeroFactura).ToList()
+                            For Each facturad As DetalleFacturaModel In detalleData
+                                linea += $"{facturad.Campo0}|{facturad.Campo1}|{facturad.Campo2}|{facturad.Campo3}|{facturad.Campo4}|{facturad.Campo5}" +
+                                    $"|{facturad.Campo6}|{facturad.Campo7}|{facturad.Campo8}|{facturad.Campo9}|{facturad.Campo10}" +
+                                    $"|{facturad.Campo11}|{facturad.Campo12}" & vbCrLf +
+                                    $"{facturad.Campo13}|{facturad.Campo14}|{facturad.Campo15}|{facturad.Campo16}|{facturad.Campo17}" +
+                                    $"|{facturad.Campo18}|{facturad.Campo19}" & vbCrLf
 
-                            ' Agrega los campos de DetalleFacturaModel a la línea
-                            For Each detalle As DetalleFacturaModel In detalles
-                                linea += $"linea"
-                                ' Continúa agregando campos según las propiedades de la clase DetalleFacturaModel
+
+                                ' Busca los datos correspondientes en los detalles de la factura
+                                ' Verifica si hay detalles para la factura actual
+                                'Dim detalles As List(Of DetalleDetalleFacturaModel) = facturaDetalleData.Where(Function(detalle) detalle.NumeroFactura = factura.NumeroFactura).ToList()
+                                'Dim detalles As List(Of DetalleDetalleFacturaModel)
                             Next
+                            linea += $"{factura.Campo49}|{factura.Campo50}|{factura.Campo51}|{factura.Campo52}|{factura.Campo53}|{factura.Campo54}|{factura.Campo55}"
 
-                            ' Escribe la línea en el archivo
                             writer.WriteLine(linea)
                         Next
-
                         ' El archivo se generó con éxito, muestra un mensaje de confirmación
                         MessageBox.Show("El archivo se ha generado con éxito.", "Generación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End Using

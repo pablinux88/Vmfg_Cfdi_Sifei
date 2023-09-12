@@ -1,5 +1,6 @@
 ﻿Public Class FacturaModel
     Public Property NumeroFactura As String
+    Public Property Campo0 As String
     Public Property Campo1 As String
     Public Property Campo2 As String
     Public Property Campo3 As String
@@ -11,7 +12,7 @@
     Public Property Campo9 As String
     Public Property Campo10 As String
     Public Property Campo11 As String
-    Public Property Campo12 As String
+    Public Property Campo12 As Decimal
     Public Property Campo13 As String
     Public Property Campo14 As String
     Public Property Campo15 As String
@@ -47,5 +48,18 @@
     Public Property Campo45 As String
     Public Property Campo46 As String
     Public Property Campo47 As String
+    Public Property Campo48 As String
+    Public Property Campo49 As String
+    Public Property Campo50 As String
+    Public Property Campo51 As String
+    Public Property Campo52 As String
+    Public Property Campo53 As String
+    Public Property Campo54 As Decimal
+    Public Property Campo55 As Decimal
+    Public Property Campo56 As String
+    Public Property Campo57 As String
+    Public Property Campo58 As String
+    Public Property Campo59 As String
+    Public Property Campo60 As String
 
 End Class

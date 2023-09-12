@@ -1,4 +1,6 @@
 ﻿Public Class Inicio
+
+    Private uuid As New UuidModel()
     Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If System.IO.File.Exists(modHome.fSettings) = True Then
         Else
@@ -15,7 +17,14 @@
         modHome.mssqlusr = objIniFile.GetString(dataBase, "USER", "")
         modHome.mssqlpas = objIniFile.GetString(dataBase, "PASS", "")
 
+        modHome.mariadbsrv = objIniFile.GetString(dataBase, "MARIASRV", "")
+        modHome.mariadb = objIniFile.GetString(dataBase, "MARIADB", "")
+        modHome.mariadbusr = objIniFile.GetString(dataBase, "MARIAUSR", "")
+        modHome.mariadbpas = objIniFile.GetString(dataBase, "MARIAPAS", "")
+
         Label1.Text = "Server: " & mssqlsrv & " DB: " & mssqldb & " User: " & mssqlusr
+
+        Label2.Text = "Server: " & mariadbsrv & " DB: " & mariadb & " User: " & mariadbusr
 
     End Sub
 
@@ -27,5 +36,11 @@
     Private Sub FacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónToolStripMenuItem.Click
         Dim formSellos As New formFacturaTxt()
         formSellos.Show()
+    End Sub
+
+    Private Sub PagoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagoToolStripMenuItem.Click
+
+        uuid.MonitorearFacturas()
+
     End Sub
 End Class
