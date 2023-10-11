@@ -242,16 +242,16 @@ Public Class FacturaController
                             If Not reader.IsDBNull(60) Then
                                 factura.Campo60 = reader.GetString(60)
                             End If
-                            If Not reader.IsDBNull(60) Then
+                            If Not reader.IsDBNull(61) Then
                                 factura.Campo61 = reader.GetString(61)
                             End If
-                            If Not reader.IsDBNull(60) Then
+                            If Not reader.IsDBNull(62) Then
                                 factura.Campo62 = reader.GetString(62)
                             End If
-                            If Not reader.IsDBNull(60) Then
+                            If Not reader.IsDBNull(63) Then
                                 factura.Campo63 = reader.GetString(63)
                             End If
-                            If Not reader.IsDBNull(60) Then
+                            If Not reader.IsDBNull(64) Then
                                 factura.Campo64 = reader.GetString(64)
                             End If
                             facturaData.Add(factura)
