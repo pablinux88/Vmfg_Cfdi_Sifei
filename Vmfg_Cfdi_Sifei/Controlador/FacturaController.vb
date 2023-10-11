@@ -227,21 +227,33 @@ Public Class FacturaController
                             If Not reader.IsDBNull(55) Then
                                 factura.Campo55 = reader.GetDecimal(55)
                             End If
-                            'If Not reader.IsDBNull(56) Then
-                            '    factura.Campo56 = reader.GetString(56)
-                            'End If
-                            'If Not reader.IsDBNull(57) Then
-                            '    factura.Campo57 = reader.GetString(57)
-                            'End If
-                            'If Not reader.IsDBNull(58) Then
-                            '    factura.Campo58 = reader.GetString(58)
-                            'End If
-                            'If Not reader.IsDBNull(59) Then
-                            '    factura.Campo59 = reader.GetString(59)
-                            'End If
-                            'If Not reader.IsDBNull(60) Then
-                            '    factura.Campo60 = reader.GetString(60)
-                            'End If
+                            If Not reader.IsDBNull(56) Then
+                                factura.Campo56 = reader.GetString(56)
+                            End If
+                            If Not reader.IsDBNull(57) Then
+                                factura.Campo57 = reader.GetString(57)
+                            End If
+                            If Not reader.IsDBNull(58) Then
+                                factura.Campo58 = reader.GetString(58)
+                            End If
+                            If Not reader.IsDBNull(59) Then
+                                factura.Campo59 = reader.GetString(59)
+                            End If
+                            If Not reader.IsDBNull(60) Then
+                                factura.Campo60 = reader.GetString(60)
+                            End If
+                            If Not reader.IsDBNull(60) Then
+                                factura.Campo61 = reader.GetString(61)
+                            End If
+                            If Not reader.IsDBNull(60) Then
+                                factura.Campo62 = reader.GetString(62)
+                            End If
+                            If Not reader.IsDBNull(60) Then
+                                factura.Campo63 = reader.GetString(63)
+                            End If
+                            If Not reader.IsDBNull(60) Then
+                                factura.Campo64 = reader.GetString(64)
+                            End If
                             facturaData.Add(factura)
                         End While
                     End Using
@@ -350,7 +362,9 @@ Public Class FacturaController
                                 'Dim detalles As List(Of DetalleDetalleFacturaModel) = facturaDetalleData.Where(Function(detalle) detalle.NumeroFactura = factura.NumeroFactura).ToList()
                                 'Dim detalles As List(Of DetalleDetalleFacturaModel)
                             Next
-                            linea += $"{factura.Campo49}|{factura.Campo50}|{factura.Campo51}|{factura.Campo52}|{factura.Campo53}|{factura.Campo54}|{factura.Campo55}"
+                            linea += $"{factura.Campo49}|{factura.Campo50}|{factura.Campo51}|{factura.Campo52}|{factura.Campo53}|{factura.Campo54}|{factura.Campo55}" & vbCrLf &
+                                $"{factura.Campo56}|{factura.Campo57}|{factura.Campo58}|{factura.Campo59}|" & vbCrLf &
+                                $"{factura.Campo60}|{factura.Campo61}|{factura.Campo62}|{factura.Campo63}|{factura.Campo64}"
 
                             writer.WriteLine(linea)
                         Next

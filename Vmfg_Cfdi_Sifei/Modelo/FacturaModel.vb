@@ -61,5 +61,10 @@
     Public Property Campo58 As String
     Public Property Campo59 As String
     Public Property Campo60 As String
+    Public Property Campo61 As String
+    Public Property Campo62 As String
+    Public Property Campo63 As String
+    Public Property Campo64 As String
+
 
 End Class

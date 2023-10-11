@@ -34,7 +34,8 @@ Public Class UuidModel
                             While reader.Read()
                                 ' Obtener los datos de la tabla de MariaDB
                                 Dim numeroFactura As String = reader("NumeroFactura").ToString()
-                                Dim idCfdFacturas As Integer = Convert.ToInt32(reader("IdCFDFacturas"))
+                                'Dim idCfdFacturas As Integer = Convert.ToInt32(reader("IdCFDFacturas"))
+                                Dim idCfdFacturas As Integer = reader("IdCFDFacturas").ToString()
                                 Dim version As String = reader("Version").ToString()
                                 Dim serie As String = reader("Serie").ToString()
                                 Dim folio As Integer = Convert.ToInt32(reader("Folio"))
@@ -70,19 +71,15 @@ Public Class UuidModel
                                 Dim TipoDocto As String = reader("TipoDocto").ToString()
                                 Dim Pdf As String = reader("Pdf").ToString()
                                 Dim Xml As String = reader("Xml").ToString()
-                                'Dim FechaCancel As Date = reader("FechaCancel")
-                                Dim fechaCancel As Date
-                                If Not IsDBNull(reader("FechaCancel")) Then
-                                    fechaCancel = Convert.ToDateTime(reader("FechaCancel"))
-                                Else
-                                    ' Puedes asignar un valor predeterminado en caso de que sea nulo
-                                    fechaCancel = Nothing ' O cualquier otro valor predeterminado que desees
-                                End If
                                 Dim idGUID As String = reader("idGUID").ToString()
-                                Dim Moneda As String = reader("Moneda").ToString()
-                                Dim TipoDeCambio As Integer = Convert.ToInt32(reader("TipoDeCambio"))
+                                Dim moneda As String = reader("Moneda").ToString()
+                                Dim tipoDeCambio As Integer = Convert.ToInt32(reader("TipoDeCambio"))
+                                Dim nombreArchivo As String = reader("NombreArchivo").ToString()
+                                Dim mail As String = reader("Mail").ToString()
+                                Dim mailEnviado As String = reader("MailEnviado").ToString()
+                                Dim lugarExped As String = reader("LugarExped").ToString()
+                                Dim usoCfdiCli As String = reader("UsoCfdiCli").ToString()
                                 Dim uuid As String = reader("UUID").ToString()
-
 
                                 ' Iniciar el proceso de inserción y actualización
                                 Dim registroCorrecto As Boolean = False
@@ -108,13 +105,13 @@ Public Class UuidModel
                                                 " MOTIVODESCUENTO, TOTAL, METODODEPAGO, TIPODECOMPROBANTE, RFCCONT, NOMBRECONT, RAZONSOCIALCONT, DFCONT, IDEMISOR, " +
                                                 " NOMBREEMI, EEEMISOR, RFCCLI, NOMBRECLI, RAZONSOCIALCLI, RECLIENTE, TOTALIMPUESTOSRETENIDOS, TOTALIMPUESTOSTRASLADADOS, " +
                                                 " CADENAORIGINAL, DESCUENTOGRAL, IMPUESTOGRAL, STATUS, TIPODOCTO, PDF, XML, IDGUID, MONEDA, TIPODECAMBIO, " +
-                                                " UUID ) " +
+                                                " NOMBREARCHIVO, MAIL, MAILENVIADO, LUGAREXPED, USOCFDICLI, UUID ) " +
                                                 " VALUES (@NumeroFactura, @IDCFDFACTURAS, @VERSION, @SERIE, @FOLIO, " +
                                                 " @FECHA, @SELLO, @NOAPROBACION, @FORMADEPAGO, @NOCERTIFICADO, @CONDICIONESDEPAGO, @SUBTOTAL, @DESCUENTO, " +
                                                 " @MOTIVODESCUENTO, @TOTAL, @METODODEPAGO, @TIPODECOMPROBANTE, @RFCCONT, @NOMBRECONT, @RAZONSOCIALCONT, @DFCONT, @IDEMISOR, " +
                                                 " @NOMBREEMI, @EEEMISOR, @RFCCLI, @NOMBRECLI, @RAZONSOCIALCLI, @RECLIENTE, @TOTALIMPUESTOSRETENIDOS, @TOTALIMPUESTOSTRASLADADOS, " +
                                                 " @CADENAORIGINAL, @DESCUENTOGRAL, @IMPUESTOGRAL, @STATUS, @TIPODOCTO, @PDF, @XML, @IDGUID, @MONEDA, @TIPODECAMBIO, " +
-                                                " @UUID)"
+                                                " @NOMBREARCHIVO, @MAIL, @MAILENVIADO, @LUGAREXPED, @USOCFDICLI, @UUID)"
                                             Using sqlCommandSQL As New SqlCommand(insertQuery, sqlConnection, sqlTransaction)
                                                 sqlCommandSQL.Parameters.AddWithValue("@NumeroFactura", numeroFactura)
                                                 sqlCommandSQL.Parameters.AddWithValue("@IDCFDFACTURAS", idCfdFacturas)
@@ -153,11 +150,14 @@ Public Class UuidModel
                                                 sqlCommandSQL.Parameters.AddWithValue("@TIPODOCTO", TipoDocto)
                                                 sqlCommandSQL.Parameters.AddWithValue("@PDF", Pdf)
                                                 sqlCommandSQL.Parameters.AddWithValue("@XML", Xml)
-                                                'sqlCommandSQL.Parameters.AddWithValue("@FECHACANCEL", FechaCancel)
                                                 sqlCommandSQL.Parameters.AddWithValue("@IDGUID", idGUID)
                                                 sqlCommandSQL.Parameters.AddWithValue("@MONEDA", Moneda)
                                                 sqlCommandSQL.Parameters.AddWithValue("@TIPODECAMBIO", TipoDeCambio)
-
+                                                sqlCommandSQL.Parameters.AddWithValue("@NOMBREARCHIVO", nombreArchivo)
+                                                sqlCommandSQL.Parameters.AddWithValue("@MAIL", mail)
+                                                sqlCommandSQL.Parameters.AddWithValue("@MAILENVIADO", mailEnviado)
+                                                sqlCommandSQL.Parameters.AddWithValue("@LUGAREXPED", lugarExped)
+                                                sqlCommandSQL.Parameters.AddWithValue("@USOCFDICLI", usoCfdiCli)
                                                 sqlCommandSQL.Parameters.AddWithValue("@UUID", uuid)
                                                 sqlCommandSQL.ExecuteNonQuery()
                                             End Using
@@ -166,11 +166,13 @@ Public Class UuidModel
                                             ' Si llegas a tener condiciones específicas de validación, aquí puedes agregarlas
 
                                             ' Marcar el registro en MariaDB como actualizado
-                                            Dim updateMariaDBQuery As String = "UPDATE cfdfacturasemit SET Actualizado = 1 WHERE IdCFDFacturas = @IdCFDFacturas"
+                                            Dim updateMariaDBQuery As String = "UPDATE cfdfacturasemit SET Actualizado = 1 WHERE IdCFDFacturas = ?"
+
                                             Using sqlCommandMariaDB As New OdbcCommand(updateMariaDBQuery, mariaDBConnection)
-                                                sqlCommandMariaDB.Parameters.AddWithValue("@IdCFDFacturas", IdCFDFacturas)
+                                                sqlCommandMariaDB.Parameters.AddWithValue("@IdCFDFacturas", idCfdFacturas)
                                                 sqlCommandMariaDB.ExecuteNonQuery()
                                             End Using
+
 
                                             ' Validar el resultado del update
                                             ' Si llegas a tener condiciones específicas de validación, aquí puedes agregarlas
