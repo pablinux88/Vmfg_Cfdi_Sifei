@@ -55,6 +55,32 @@ Public Class UuidModel
                                 Dim razonSocialCont As String = reader("RazonSocialCont").ToString()
                                 Dim dfCont As String = reader("DFCont").ToString()
                                 Dim idEmisor As Integer = Convert.ToInt32(reader("IdEmisor"))
+                                Dim nombreEmi As String = reader("NombreEmi").ToString()
+                                Dim eEEmisor As String = reader("EEEmisor").ToString()
+                                Dim rfcCli As String = reader("RfcCli").ToString()
+                                Dim nombreCli As String = reader("NombreCli").ToString()
+                                Dim razonSocialCli As String = reader("RazonSocialCli").ToString()
+                                Dim rECliente As String = reader("RECliente").ToString()
+                                Dim totalImpuestosRetenidos As String = reader("TotalImpuestosRetenidos")
+                                Dim totalImpuestosTrasladados As String = reader("TotalImpuestosTrasladados")
+                                Dim CadenaOriginal As String = reader("CadenaOriginal").ToString()
+                                Dim DescuentoGral As Decimal = reader("DescuentoGral")
+                                Dim ImpuestoGral As Decimal = reader("ImpuestoGral")
+                                Dim Status As String = reader("Status").ToString()
+                                Dim TipoDocto As String = reader("TipoDocto").ToString()
+                                Dim Pdf As String = reader("Pdf").ToString()
+                                Dim Xml As String = reader("Xml").ToString()
+                                'Dim FechaCancel As Date = reader("FechaCancel")
+                                Dim fechaCancel As Date
+                                If Not IsDBNull(reader("FechaCancel")) Then
+                                    fechaCancel = Convert.ToDateTime(reader("FechaCancel"))
+                                Else
+                                    ' Puedes asignar un valor predeterminado en caso de que sea nulo
+                                    fechaCancel = Nothing ' O cualquier otro valor predeterminado que desees
+                                End If
+                                Dim idGUID As String = reader("idGUID").ToString()
+                                Dim Moneda As String = reader("Moneda").ToString()
+                                Dim TipoDeCambio As Integer = Convert.ToInt32(reader("TipoDeCambio"))
                                 Dim uuid As String = reader("UUID").ToString()
 
 
@@ -80,10 +106,14 @@ Public Class UuidModel
                                             Dim insertQuery As String = "INSERT INTO CFDI_FACTURAS (INVOICE_ID, IDCFDFACTURAS, VERSION, SERIE, FOLIO, " +
                                                 " FECHA,  SELLO, NOAPROBACION, FORMADEPAGO, NOCERTIFICADO, CONDICIONESDEPAGO, SUBTOTAL, DESCUENTO, " +
                                                 " MOTIVODESCUENTO, TOTAL, METODODEPAGO, TIPODECOMPROBANTE, RFCCONT, NOMBRECONT, RAZONSOCIALCONT, DFCONT, IDEMISOR, " +
+                                                " NOMBREEMI, EEEMISOR, RFCCLI, NOMBRECLI, RAZONSOCIALCLI, RECLIENTE, TOTALIMPUESTOSRETENIDOS, TOTALIMPUESTOSTRASLADADOS, " +
+                                                " CADENAORIGINAL, DESCUENTOGRAL, IMPUESTOGRAL, STATUS, TIPODOCTO, PDF, XML, IDGUID, MONEDA, TIPODECAMBIO, " +
                                                 " UUID ) " +
                                                 " VALUES (@NumeroFactura, @IDCFDFACTURAS, @VERSION, @SERIE, @FOLIO, " +
                                                 " @FECHA, @SELLO, @NOAPROBACION, @FORMADEPAGO, @NOCERTIFICADO, @CONDICIONESDEPAGO, @SUBTOTAL, @DESCUENTO, " +
                                                 " @MOTIVODESCUENTO, @TOTAL, @METODODEPAGO, @TIPODECOMPROBANTE, @RFCCONT, @NOMBRECONT, @RAZONSOCIALCONT, @DFCONT, @IDEMISOR, " +
+                                                " @NOMBREEMI, @EEEMISOR, @RFCCLI, @NOMBRECLI, @RAZONSOCIALCLI, @RECLIENTE, @TOTALIMPUESTOSRETENIDOS, @TOTALIMPUESTOSTRASLADADOS, " +
+                                                " @CADENAORIGINAL, @DESCUENTOGRAL, @IMPUESTOGRAL, @STATUS, @TIPODOCTO, @PDF, @XML, @IDGUID, @MONEDA, @TIPODECAMBIO, " +
                                                 " @UUID)"
                                             Using sqlCommandSQL As New SqlCommand(insertQuery, sqlConnection, sqlTransaction)
                                                 sqlCommandSQL.Parameters.AddWithValue("@NumeroFactura", numeroFactura)
@@ -108,6 +138,25 @@ Public Class UuidModel
                                                 sqlCommandSQL.Parameters.AddWithValue("@RAZONSOCIALCONT", razonSocialCont)
                                                 sqlCommandSQL.Parameters.AddWithValue("@DFCONT", dfCont)
                                                 sqlCommandSQL.Parameters.AddWithValue("@IDEMISOR", idEmisor)
+                                                sqlCommandSQL.Parameters.AddWithValue("@NOMBREEMI", nombreEmi)
+                                                sqlCommandSQL.Parameters.AddWithValue("@EEEMISOR", eEEmisor)
+                                                sqlCommandSQL.Parameters.AddWithValue("@RFCCLI", rfcCli)
+                                                sqlCommandSQL.Parameters.AddWithValue("@NOMBRECLI", nombreCli)
+                                                sqlCommandSQL.Parameters.AddWithValue("@RAZONSOCIALCLI", razonSocialCli)
+                                                sqlCommandSQL.Parameters.AddWithValue("@RECLIENTE", rECliente)
+                                                sqlCommandSQL.Parameters.AddWithValue("@TOTALIMPUESTOSRETENIDOS", totalImpuestosRetenidos)
+                                                sqlCommandSQL.Parameters.AddWithValue("@TOTALIMPUESTOSTRASLADADOS", totalImpuestosTrasladados)
+                                                sqlCommandSQL.Parameters.AddWithValue("@CADENAORIGINAL", CadenaOriginal)
+                                                sqlCommandSQL.Parameters.AddWithValue("@DESCUENTOGRAL", DescuentoGral)
+                                                sqlCommandSQL.Parameters.AddWithValue("@IMPUESTOGRAL", ImpuestoGral)
+                                                sqlCommandSQL.Parameters.AddWithValue("@STATUS", Status)
+                                                sqlCommandSQL.Parameters.AddWithValue("@TIPODOCTO", TipoDocto)
+                                                sqlCommandSQL.Parameters.AddWithValue("@PDF", Pdf)
+                                                sqlCommandSQL.Parameters.AddWithValue("@XML", Xml)
+                                                'sqlCommandSQL.Parameters.AddWithValue("@FECHACANCEL", FechaCancel)
+                                                sqlCommandSQL.Parameters.AddWithValue("@IDGUID", idGUID)
+                                                sqlCommandSQL.Parameters.AddWithValue("@MONEDA", Moneda)
+                                                sqlCommandSQL.Parameters.AddWithValue("@TIPODECAMBIO", TipoDeCambio)
 
                                                 sqlCommandSQL.Parameters.AddWithValue("@UUID", uuid)
                                                 sqlCommandSQL.ExecuteNonQuery()
@@ -137,6 +186,8 @@ Public Class UuidModel
                                             ' Manejar las excepciones y mostrar mensajes de error
                                             MessageBox.Show($"Error durante el proceso del registro {numeroFactura}: {ex.Message}", "Error de Proceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
+                                            ' Enviar un mensaje a la consola
+                                            Console.WriteLine($"Error durante el proceso del registro {numeroFactura}: {ex.Message}")
                                             ' Revertir la transacción en caso de error
                                             sqlTransaction.Rollback()
 
@@ -144,6 +195,7 @@ Public Class UuidModel
                                             registrosIncorrectos += 1
                                         End Try
                                     Else
+                                        ' Manejar las excepciones generales y mostrar mensajes de error
                                         MessageBox.Show("Error en la conexión a SQL Server.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                     End If
                                 End Using
