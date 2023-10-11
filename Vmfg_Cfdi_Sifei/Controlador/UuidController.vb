@@ -5,8 +5,8 @@
         _uuidModel = New UuidModel()
     End Sub
 
-    Public Sub IniciarMonitoreo()
+    Public Sub IniciarMonitoreo(progressBar As ProgressBar)
         ' Inicia el proceso de monitoreo
-        _uuidModel.MonitorearFacturas()
+        _uuidModel.MonitorearFacturas(progressBar)
     End Sub
 End Class

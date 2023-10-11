@@ -1,4 +1,5 @@
-﻿Public Class Inicio
+﻿Imports System.Windows.Forms
+Public Class Inicio
 
     Private uuid As New UuidModel()
     Private Sub Inicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -37,10 +38,11 @@
         Dim formSellos As New formFacturaTxt()
         formSellos.Show()
     End Sub
+    Private Sub CFDISifeiAVMFGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CFDISifeiAVMFGToolStripMenuItem.Click
+        ' Crear una instancia del controlador
+        Dim uuidController As New UuidController()
 
-    Private Sub PagoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagoToolStripMenuItem.Click
-
-        uuid.MonitorearFacturas()
-
+        ' Llamar al método IniciarMonitoreo del controlador y pasar la ProgressBar
+        uuidController.IniciarMonitoreo(ProgressBar) ' Asegúrate de que ProgressBar1 sea el nombre correcto de tu ProgressBar
     End Sub
 End Class
