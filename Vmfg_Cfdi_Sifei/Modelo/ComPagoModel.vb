@@ -1,4 +1,5 @@
 ﻿Public Class ComPagoModel
+    Public Property NumeroCobro As String
     Public Property Campo0 As String
     Public Property Campo1 As String
     Public Property Campo2 As String
@@ -76,4 +77,33 @@
     Public Property Campo74 As String
     Public Property Campo75 As String
     Public Property Campo76 As Decimal
+    Public Property Campo77 As String
+    Public Property Campo78 As String
+    Public Property Campo79 As String
+    Public Property Campo80 As String
+    Public Property Campo81 As String
+    Public Property Campo82 As String
+    Public Property Campo83 As String
+    Public Property Campo84 As String
+    Public Property Campo85 As String
+    Public Property Campo86 As String
+    Public Property Campo87 As String
+    Public Property Campo88 As String
+    Public Property Campo89 As String
+    Public Property Campo90 As String
+    Public Property Campo91 As String
+    Public Property Campo92 As String
+    Public Property Campo93 As String
+    Public Property Campo94 As String
+    Public Property Campo95 As String
+    Public Property Campo96 As String
+    Public Property Campo97 As String
+    Public Property Campo98 As String
+    Public Property Campo99 As String
+    Public Property Campo100 As String
+    Public Property Campo101 As String
+    Public Property Campo102 As String
+    Public Property Campo103 As String
+    Public Property Campo104 As String
+
 End Class

@@ -91,6 +91,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modelo\ComPagoModel.vb" />
+    <Compile Include="Modelo\DetalleComPagoModel.vb" />
     <Compile Include="Modelo\DetalleFacturaModel.vb" />
     <Compile Include="Modelo\FacturaModel.vb" />
     <Compile Include="Modelo\SelloModel.vb" />

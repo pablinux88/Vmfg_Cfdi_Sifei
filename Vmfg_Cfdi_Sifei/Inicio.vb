@@ -35,8 +35,8 @@ Public Class Inicio
     End Sub
 
     Private Sub FacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónToolStripMenuItem.Click
-        Dim formSellos As New formFacturaTxt()
-        formSellos.Show()
+        Dim formFactura As New formFacturaTxt()
+        formFactura.Show()
     End Sub
     Private Sub CFDISifeiAVMFGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CFDISifeiAVMFGToolStripMenuItem.Click
         ' Crear una instancia del controlador
@@ -44,5 +44,10 @@ Public Class Inicio
 
         ' Llamar al método IniciarMonitoreo del controlador y pasar la ProgressBar
         uuidController.IniciarMonitoreo(ProgressBar) ' Asegúrate de que ProgressBar1 sea el nombre correcto de tu ProgressBar
+    End Sub
+
+    Private Sub PagoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagoToolStripMenuItem.Click
+        Dim formCobros As New formComPagoTxt()
+        formCobros.Show()
     End Sub
 End Class

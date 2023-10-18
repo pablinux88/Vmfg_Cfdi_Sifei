@@ -42,13 +42,12 @@ Partial Class Inicio
         '
         'MenuStrip
         '
-        Me.MenuStrip.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónToolStripMenuItem, Me.GenerarTXTToolStripMenuItem, Me.ImportarToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(3, 1, 0, 1)
-        Me.MenuStrip.Size = New System.Drawing.Size(800, 38)
+        Me.MenuStrip.Size = New System.Drawing.Size(800, 24)
         Me.MenuStrip.TabIndex = 0
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -56,45 +55,45 @@ Partial Class Inicio
         '
         Me.ConfiguraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CertificadoToolStripMenuItem})
         Me.ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
-        Me.ConfiguraciónToolStripMenuItem.Size = New System.Drawing.Size(185, 36)
+        Me.ConfiguraciónToolStripMenuItem.Size = New System.Drawing.Size(95, 22)
         Me.ConfiguraciónToolStripMenuItem.Text = "Configuración"
         '
         'CertificadoToolStripMenuItem
         '
         Me.CertificadoToolStripMenuItem.Name = "CertificadoToolStripMenuItem"
-        Me.CertificadoToolStripMenuItem.Size = New System.Drawing.Size(264, 44)
+        Me.CertificadoToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.CertificadoToolStripMenuItem.Text = "Certificado"
         '
         'GenerarTXTToolStripMenuItem
         '
         Me.GenerarTXTToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónToolStripMenuItem, Me.PagoToolStripMenuItem})
         Me.GenerarTXTToolStripMenuItem.Name = "GenerarTXTToolStripMenuItem"
-        Me.GenerarTXTToolStripMenuItem.Size = New System.Drawing.Size(166, 36)
+        Me.GenerarTXTToolStripMenuItem.Size = New System.Drawing.Size(82, 22)
         Me.GenerarTXTToolStripMenuItem.Text = "Generar TXT"
         '
         'FacturaciónToolStripMenuItem
         '
         Me.FacturaciónToolStripMenuItem.Name = "FacturaciónToolStripMenuItem"
-        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(270, 44)
+        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.FacturaciónToolStripMenuItem.Text = "Facturación"
         '
         'PagoToolStripMenuItem
         '
         Me.PagoToolStripMenuItem.Name = "PagoToolStripMenuItem"
-        Me.PagoToolStripMenuItem.Size = New System.Drawing.Size(270, 44)
+        Me.PagoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PagoToolStripMenuItem.Text = "Pago"
         '
         'ImportarToolStripMenuItem
         '
         Me.ImportarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CFDISifeiAVMFGToolStripMenuItem})
         Me.ImportarToolStripMenuItem.Name = "ImportarToolStripMenuItem"
-        Me.ImportarToolStripMenuItem.Size = New System.Drawing.Size(126, 36)
+        Me.ImportarToolStripMenuItem.Size = New System.Drawing.Size(65, 22)
         Me.ImportarToolStripMenuItem.Text = "Importar"
         '
         'CFDISifeiAVMFGToolStripMenuItem
         '
         Me.CFDISifeiAVMFGToolStripMenuItem.Name = "CFDISifeiAVMFGToolStripMenuItem"
-        Me.CFDISifeiAVMFGToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.CFDISifeiAVMFGToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         Me.CFDISifeiAVMFGToolStripMenuItem.Text = "CFDI Sifei a VMFG"
         '
         'ToolStripContainer1

@@ -18,7 +18,7 @@ Public Class UuidModel
                 mariaDBConnection.Open()
 
                 If mariaDBConnection.State = ConnectionState.Open Then
-                    Dim selectQuery As String = "SELECT SUBSTRING(F.NombreArchivo, 1, LOCATE('.', NombreArchivo) - 1) AS NumeroFactura, F.IdCFDFacturas,  " +
+                    Dim selectQuery As String = "SELECT SUBSTRING(F.NombreArchivo, 1, LOCATE('.', NombreArchivo) - 1) AS NumeroCobro, F.IdCFDFacturas,  " +
                         "F.Version, F.Serie, F.Folio, F.Fecha, F.Sello, " +
                         "F.noAprobacion, F.formaDePago, F.noCertificado, F.condicionesDePago, F.SubTotal, F.Descuento, " +
                         "F.motivoDescuento, F.Total, F.metodoDePago, F.tipoDeComprobante, F.RfcCont, F.NombreCont, " +
@@ -33,7 +33,7 @@ Public Class UuidModel
                         Using reader As OdbcDataReader = sqlCommand.ExecuteReader()
                             While reader.Read()
                                 ' Obtener los datos de la tabla de MariaDB
-                                Dim numeroFactura As String = reader("NumeroFactura").ToString()
+                                Dim numeroFactura As String = reader("NumeroCobro").ToString()
                                 'Dim idCfdFacturas As Integer = Convert.ToInt32(reader("IdCFDFacturas"))
                                 Dim idCfdFacturas As Integer = reader("IdCFDFacturas").ToString()
                                 Dim version As String = reader("Version").ToString()
@@ -94,9 +94,9 @@ Public Class UuidModel
 
                                         Try
                                             'Borrar en CFDI_FACTURAS
-                                            Dim deleteQuery As String = "DELETE FROM CFDI_FACTURAS WHERE INVOICE_ID = @NumeroFactura"
+                                            Dim deleteQuery As String = "DELETE FROM CFDI_FACTURAS WHERE INVOICE_ID = @NumeroCobro"
                                             Using sqlCommand1SQL As New SqlCommand(deleteQuery, sqlConnection, sqlTransaction)
-                                                sqlCommand1SQL.Parameters.AddWithValue("@NumeroFactura", numeroFactura)
+                                                sqlCommand1SQL.Parameters.AddWithValue("@NumeroCobro", numeroFactura)
                                                 sqlCommand1SQL.ExecuteNonQuery()
                                             End Using
                                             ' Insertar en CFDI_FACTURAS
@@ -106,14 +106,14 @@ Public Class UuidModel
                                                 " NOMBREEMI, EEEMISOR, RFCCLI, NOMBRECLI, RAZONSOCIALCLI, RECLIENTE, TOTALIMPUESTOSRETENIDOS, TOTALIMPUESTOSTRASLADADOS, " +
                                                 " CADENAORIGINAL, DESCUENTOGRAL, IMPUESTOGRAL, STATUS, TIPODOCTO, PDF, XML, IDGUID, MONEDA, TIPODECAMBIO, " +
                                                 " NOMBREARCHIVO, MAIL, MAILENVIADO, LUGAREXPED, USOCFDICLI, UUID ) " +
-                                                " VALUES (@NumeroFactura, @IDCFDFACTURAS, @VERSION, @SERIE, @FOLIO, " +
+                                                " VALUES (@NumeroCobro, @IDCFDFACTURAS, @VERSION, @SERIE, @FOLIO, " +
                                                 " @FECHA, @SELLO, @NOAPROBACION, @FORMADEPAGO, @NOCERTIFICADO, @CONDICIONESDEPAGO, @SUBTOTAL, @DESCUENTO, " +
                                                 " @MOTIVODESCUENTO, @TOTAL, @METODODEPAGO, @TIPODECOMPROBANTE, @RFCCONT, @NOMBRECONT, @RAZONSOCIALCONT, @DFCONT, @IDEMISOR, " +
                                                 " @NOMBREEMI, @EEEMISOR, @RFCCLI, @NOMBRECLI, @RAZONSOCIALCLI, @RECLIENTE, @TOTALIMPUESTOSRETENIDOS, @TOTALIMPUESTOSTRASLADADOS, " +
                                                 " @CADENAORIGINAL, @DESCUENTOGRAL, @IMPUESTOGRAL, @STATUS, @TIPODOCTO, @PDF, @XML, @IDGUID, @MONEDA, @TIPODECAMBIO, " +
                                                 " @NOMBREARCHIVO, @MAIL, @MAILENVIADO, @LUGAREXPED, @USOCFDICLI, @UUID)"
                                             Using sqlCommandSQL As New SqlCommand(insertQuery, sqlConnection, sqlTransaction)
-                                                sqlCommandSQL.Parameters.AddWithValue("@NumeroFactura", numeroFactura)
+                                                sqlCommandSQL.Parameters.AddWithValue("@NumeroCobro", numeroFactura)
                                                 sqlCommandSQL.Parameters.AddWithValue("@IDCFDFACTURAS", idCfdFacturas)
                                                 sqlCommandSQL.Parameters.AddWithValue("@SERIE", serie)
                                                 sqlCommandSQL.Parameters.AddWithValue("@FOLIO", folio)

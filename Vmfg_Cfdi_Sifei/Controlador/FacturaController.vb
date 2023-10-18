@@ -359,7 +359,7 @@ Public Class FacturaController
 
                                 ' Busca los datos correspondientes en los detalles de la factura
                                 ' Verifica si hay detalles para la factura actual
-                                'Dim detalles As List(Of DetalleDetalleFacturaModel) = facturaDetalleData.Where(Function(detalle) detalle.NumeroFactura = factura.NumeroFactura).ToList()
+                                'Dim detalles As List(Of DetalleDetalleFacturaModel) = facturaDetalleData.Where(Function(detalle) detalle.NumeroCobro = factura.NumeroCobro).ToList()
                                 'Dim detalles As List(Of DetalleDetalleFacturaModel)
                             Next
                             linea += $"{factura.Campo49}|{factura.Campo50}|{factura.Campo51}|{factura.Campo52}|{factura.Campo53}|{factura.Campo54}|{factura.Campo55}" & vbCrLf &

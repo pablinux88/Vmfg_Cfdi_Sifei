@@ -14,6 +14,7 @@ Public Class ComPagoController
             Using cmdExistencia As New SqlCommand("sp_VerificarExistenciaCobro", connection)
                 cmdExistencia.CommandType = CommandType.StoredProcedure
                 cmdExistencia.Parameters.AddWithValue("@DEPOSIT_ID", numeroCobro)
+
                 Dim resultadoExistencia As Object = cmdExistencia.ExecuteScalar()
 
                 If resultadoExistencia IsNot Nothing AndAlso resultadoExistencia IsNot DBNull.Value Then
@@ -23,53 +24,43 @@ Public Class ComPagoController
 
             If facturaExiste Then
                 ' Ejecuta el procedimiento almacenado y obtiene los datos de CobroModel
-                Dim cobroData As New List(Of FacturaModel)()
+                Dim cobroData As New List(Of ComPagoModel)()
                 Using cmd As New SqlCommand("sp_ObtenerCfdiPago", connection)
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.Parameters.AddWithValue("@DEPOSIT_ID", numeroCobro)
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         While reader.Read()
-                            Dim cobro As New FacturaModel()
+                            Dim cobro As New ComPagoModel()
                             ' Rellena los datos de FacturaModel
-
-                            cobro.NumeroFactura = numeroCobro
+                            cobro.NumeroCobro = numeroCobro
 
                             If Not reader.IsDBNull(0) Then
                                 cobro.Campo0 = reader.GetString(0)
                             End If
-
                             If Not reader.IsDBNull(1) Then
                                 cobro.Campo1 = reader.GetString(1)
                             End If
-
                             If Not reader.IsDBNull(2) Then
                                 cobro.Campo2 = reader.GetString(2)
                             End If
-
                             If Not reader.IsDBNull(3) Then
                                 cobro.Campo3 = reader.GetString(3)
                             End If
-
                             If Not reader.IsDBNull(4) Then
                                 cobro.Campo4 = reader.GetString(4)
                             End If
-
                             If Not reader.IsDBNull(5) Then
                                 cobro.Campo5 = reader.GetString(5)
                             End If
-
                             If Not reader.IsDBNull(6) Then
                                 cobro.Campo6 = reader.GetString(6)
                             End If
-
                             If Not reader.IsDBNull(7) Then
                                 cobro.Campo7 = reader.GetString(7)
                             End If
-
                             If Not reader.IsDBNull(8) Then
                                 cobro.Campo7 = reader.GetString(8)
                             End If
-
                             If Not reader.IsDBNull(9) Then
                                 cobro.Campo7 = reader.GetString(9)
                             End If
@@ -242,113 +233,105 @@ Public Class ComPagoController
                         End While
                     End Using
                 End Using
-                ' Ejecuta el procedimiento almacenado y obtiene los datos de DetalleFacturaModel
-                Dim detalleData As New List(Of DetalleFacturaModel)()
+
+                ' Ejecuta el procedimiento almacenado y obtiene los datos de DetalleComPagoModel
+                Dim detalleData As New List(Of DetalleComPagoModel)()
                 Using cmd As New SqlCommand("sp_ObtenerCfdiPagoDetalle", connection)
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.Parameters.AddWithValue("@DEPOSIT_ID", numeroCobro)
                     Using reader As SqlDataReader = cmd.ExecuteReader()
                         While reader.Read()
-                            Dim facturaDet As New DetalleFacturaModel()
-                            ' Rellena los datos de DetalleFacturaModel
-                            facturaDet.NumeroFactura = numeroCobro
+                            Dim comPagoDet As New DetalleComPagoModel()
+                            ' Rellena los datos de DetalleComPagoModel
+                            comPagoDet.NumeroCobro = numeroCobro
                             If Not reader.IsDBNull(0) Then
-                                facturaDet.Campo0 = reader.GetString(0)
+                                comPagoDet.Campo0 = reader.GetString(0)
                             End If
-
                             If Not reader.IsDBNull(1) Then
-                                facturaDet.Campo1 = reader.GetInt16(1)
+                                comPagoDet.Campo1 = reader.GetInt16(1)
                             End If
-
                             If Not reader.IsDBNull(2) Then
-                                facturaDet.Campo2 = reader.GetDecimal(2)
+                                comPagoDet.Campo2 = reader.GetDecimal(2)
                             End If
                             If Not reader.IsDBNull(3) Then
-                                facturaDet.Campo3 = reader.GetString(3)
+                                comPagoDet.Campo3 = reader.GetString(3)
                             End If
                             If Not reader.IsDBNull(4) Then
-                                facturaDet.Campo4 = reader.GetString(4)
+                                comPagoDet.Campo4 = reader.GetString(4)
                             End If
                             If Not reader.IsDBNull(5) Then
-                                facturaDet.Campo5 = reader.GetString(5)
+                                comPagoDet.Campo5 = reader.GetString(5)
                             End If
                             If Not reader.IsDBNull(6) Then
-                                facturaDet.Campo6 = reader.GetString(6)
+                                comPagoDet.Campo6 = reader.GetString(6)
                             End If
                             If Not reader.IsDBNull(7) Then
-                                facturaDet.Campo7 = reader.GetString(7)
+                                comPagoDet.Campo7 = reader.GetString(7)
                             End If
                             If Not reader.IsDBNull(8) Then
-                                facturaDet.Campo8 = reader.GetDecimal(8)
+                                comPagoDet.Campo8 = reader.GetDecimal(8)
                             End If
                             If Not reader.IsDBNull(9) Then
-                                facturaDet.Campo9 = reader.GetString(9)
+                                comPagoDet.Campo9 = reader.GetString(9)
                             End If
                             If Not reader.IsDBNull(10) Then
-                                facturaDet.Campo10 = reader.GetDecimal(10)
+                                comPagoDet.Campo10 = reader.GetDecimal(10)
                             End If
                             If Not reader.IsDBNull(11) Then
-                                facturaDet.Campo11 = reader.GetString(11)
+                                comPagoDet.Campo11 = reader.GetString(11)
                             End If
                             If Not reader.IsDBNull(12) Then
-                                facturaDet.Campo12 = reader.GetString(12)
+                                comPagoDet.Campo12 = reader.GetString(12)
                             End If
                             If Not reader.IsDBNull(13) Then
-                                facturaDet.Campo13 = reader.GetString(13)
+                                comPagoDet.Campo13 = reader.GetString(13)
                             End If
                             If Not reader.IsDBNull(14) Then
-                                facturaDet.Campo14 = reader.GetString(14)
+                                comPagoDet.Campo14 = reader.GetString(14)
                             End If
                             If Not reader.IsDBNull(15) Then
-                                facturaDet.Campo15 = reader.GetDecimal(15)
+                                comPagoDet.Campo15 = reader.GetDecimal(15)
                             End If
                             If Not reader.IsDBNull(16) Then
-                                facturaDet.Campo16 = reader.GetString(16)
+                                comPagoDet.Campo16 = reader.GetString(16)
                             End If
                             If Not reader.IsDBNull(17) Then
-                                facturaDet.Campo17 = reader.GetString(17)
+                                comPagoDet.Campo17 = reader.GetString(17)
                             End If
                             If Not reader.IsDBNull(18) Then
-                                facturaDet.Campo18 = reader.GetString(18)
+                                comPagoDet.Campo18 = reader.GetString(18)
                             End If
                             If Not reader.IsDBNull(19) Then
-                                facturaDet.Campo19 = reader.GetDecimal(19)
+                                comPagoDet.Campo19 = reader.GetDecimal(19)
                             End If
-
-                            detalleData.Add(facturaDet)
+                            detalleData.Add(comPagoDet)
                         End While
                     End Using
                 End Using
                 Try
                     ' Genera el archivo de texto
                     Using writer As New StreamWriter(rutaArchivo)
-                        For Each factura As FacturaModel In cobroData
-                            Dim linea As String = $"{factura.Campo0}|{factura.Campo1}|{factura.Campo2}|{factura.Campo3}" +
-                                $"|{factura.Campo4}|{factura.Campo5}|{factura.Campo6}|{factura.Campo7}|{factura.Campo8}|{factura.Campo9}" +
-                                $"|{factura.Campo10}|{factura.Campo11}|{factura.Campo12}|{factura.Campo13}|{factura.Campo14}|{factura.Campo15}" +
-                                $"|{factura.Campo16}|{factura.Campo17}|{factura.Campo18}|{factura.Campo19}|{factura.Campo20}|{factura.Campo21}" +
-                                $"|{factura.Campo22}|{factura.Campo23}|{factura.Campo24}|{factura.Campo25}|{factura.Campo26}|{factura.Campo27}" +
-                                $"|{factura.Campo28}|{factura.Campo29}|{factura.Campo30}|{factura.Campo31}|{factura.Campo32}|{factura.Campo33}" +
-                                $"|{factura.Campo34}|{factura.Campo35}|{factura.Campo36}" & vbCrLf &
-                                $"{factura.Campo37}|{factura.Campo38}|{factura.Campo39}|{factura.Campo40}|{factura.Campo41}|" +
-                                $"{factura.Campo42}|{factura.Campo43}|{factura.Campo44}|{factura.Campo45}|{factura.Campo46}|{factura.Campo47}|{factura.Campo48}" & vbCrLf
+                        For Each cobro As ComPagoModel In cobroData
+                            Dim linea As String = $"{cobro.Campo0}|{cobro.Campo1}|{cobro.Campo2}|{cobro.Campo3}" +
+                                $"|{cobro.Campo4}|{cobro.Campo5}|{cobro.Campo6}|{cobro.Campo7}|{cobro.Campo8}|{cobro.Campo9}" +
+                                $"|{cobro.Campo10}|{cobro.Campo11}|{cobro.Campo12}|{cobro.Campo13}|{cobro.Campo14}|{cobro.Campo15}" +
+                                $"|{cobro.Campo16}|{cobro.Campo17}|{cobro.Campo18}|{cobro.Campo19}|{cobro.Campo20}|{cobro.Campo21}" +
+                                $"|{cobro.Campo22}|{cobro.Campo23}|{cobro.Campo24}|{cobro.Campo25}|{cobro.Campo26}|{cobro.Campo27}" +
+                                $"|{cobro.Campo28}|{cobro.Campo29}|{cobro.Campo30}|{cobro.Campo31}|{cobro.Campo32}|{cobro.Campo33}" +
+                                $"|{cobro.Campo34}|{cobro.Campo35}|{cobro.Campo36}" & vbCrLf &
+                                $"{cobro.Campo37}|{cobro.Campo38}|{cobro.Campo39}|{cobro.Campo40}|{cobro.Campo41}|" +
+                                $"{cobro.Campo42}|{cobro.Campo43}|{cobro.Campo44}|{cobro.Campo45}|{cobro.Campo46}|{cobro.Campo47}|{cobro.Campo48}" & vbCrLf
 
-                            For Each facturad As DetalleFacturaModel In detalleData
-                                linea += $"{facturad.Campo0}|{facturad.Campo1}|{facturad.Campo2}|{facturad.Campo3}|{facturad.Campo4}|{facturad.Campo5}" +
-                                    $"|{facturad.Campo6}|{facturad.Campo7}|{facturad.Campo8}|{facturad.Campo9}|{facturad.Campo10}" +
-                                    $"|{facturad.Campo11}|{facturad.Campo12}" & vbCrLf +
-                                    $"{facturad.Campo13}|{facturad.Campo14}|{facturad.Campo15}|{facturad.Campo16}|{facturad.Campo17}" +
-                                    $"|{facturad.Campo18}|{facturad.Campo19}" & vbCrLf
-
-
-                                ' Busca los datos correspondientes en los detalles de la cobro
-                                ' Verifica si hay detalles para la cobro actual
-                                'Dim detalles As List(Of DetalleDetalleFacturaModel) = facturaDetalleData.Where(Function(detalle) detalle.NumeroFactura = cobro.NumeroFactura).ToList()
-                                'Dim detalles As List(Of DetalleDetalleFacturaModel)
+                            For Each cobrod As DetalleComPagoModel In detalleData
+                                linea += $"{cobrod.Campo0}|{cobrod.Campo1}|{cobrod.Campo2}|{cobrod.Campo3}|{cobrod.Campo4}|{cobrod.Campo5}" +
+                                    $"|{cobrod.Campo6}|{cobrod.Campo7}|{cobrod.Campo8}|{cobrod.Campo9}|{cobrod.Campo10}" +
+                                    $"|{cobrod.Campo11}|{cobrod.Campo12}" & vbCrLf +
+                                    $"{cobrod.Campo13}|{cobrod.Campo14}|{cobrod.Campo15}|{cobrod.Campo16}|{cobrod.Campo17}" +
+                                    $"|{cobrod.Campo18}|{cobrod.Campo19}" & vbCrLf
                             Next
-                            linea += $"{factura.Campo49}|{factura.Campo50}|{factura.Campo51}|{factura.Campo52}|{factura.Campo53}|{factura.Campo54}|{factura.Campo55}" & vbCrLf &
-                                $"{factura.Campo56}|{factura.Campo57}|{factura.Campo58}|{factura.Campo59}|" & vbCrLf &
-                                $"{factura.Campo60}|{factura.Campo61}|{factura.Campo62}|{factura.Campo63}|{factura.Campo64}"
+                            linea += $"{cobro.Campo49}|{cobro.Campo50}|{cobro.Campo51}|{cobro.Campo52}|{cobro.Campo53}|{cobro.Campo54}|{cobro.Campo55}" & vbCrLf &
+                                $"{cobro.Campo56}|{cobro.Campo57}|{cobro.Campo58}|{cobro.Campo59}|" & vbCrLf &
+                                $"{cobro.Campo60}|{cobro.Campo61}|{cobro.Campo62}|{cobro.Campo63}|{cobro.Campo64}"
 
                             writer.WriteLine(linea)
                         Next
@@ -367,7 +350,7 @@ Public Class ComPagoController
                 End Try
             Else
                 ' La cobro no existe, muestra un mensaje de error
-                MessageBox.Show("La cobro no existe en la base de datos.", "Factura no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("El cobro no existe en la base de datos.", "Cobro no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         End Using
     End Sub
