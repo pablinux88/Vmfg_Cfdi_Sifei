@@ -1,6 +1,6 @@
 ﻿Public Class formFacturaTxt
     Sub validar()
-        If NumeroFacturaTextBox.Text = String.Empty Then
+        If NumeroFacturaTextBox.Text = String.Empty Or RutaArchivoTextBox.Text = String.Empty Then
             GenerarArchivoButton.Enabled = False
         Else
             GenerarArchivoButton.Enabled = True
@@ -30,7 +30,9 @@
     Private Sub formFacturaTxt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         validar()
     End Sub
-
+    Private Sub RutaArchivoTextBox_TextChanged(sender As Object, e As EventArgs) Handles RutaArchivoTextBox.TextChanged
+        validar()
+    End Sub
     Private Sub NumeroFacturaTextBox_TextChanged(sender As Object, e As EventArgs) Handles NumeroFacturaTextBox.TextChanged
         validar()
     End Sub

@@ -143,6 +143,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\formComPagoTxt.resx">
+      <DependentUpon>formComPagoTxt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\formFacturaTxt.resx">
       <DependentUpon>formFacturaTxt.vb</DependentUpon>
     </EmbeddedResource>
@@ -164,7 +167,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Img\credito.gif" />
     <Content Include="Img\Receivable.ico" />
+    <None Include="Img\recibo.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
