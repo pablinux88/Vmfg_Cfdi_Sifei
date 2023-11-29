@@ -8,6 +8,10 @@ Public Class UuidModel
     Private mariaDBConnectionString As String = "Driver={MariaDB ODBC 3.1 Driver};Server=" & modHome.mariadbsrv & ";Port=3306;Database=" & modHome.mariadb & ";Uid=" & modHome.mariadbusr & ";Pwd=" & modHome.mariadbpas & ";"
     Private sqlServerConnectionString As String = "Server=" & modHome.mssqlsrv & ";Database=" & modHome.mssqldb & ";User Id=" & modHome.mssqlusr & ";Password=" & modHome.mssqlpas & ";"
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="progressBar"></param>
     Public Sub MonitorearFacturas(progressBar As ProgressBar)
         Dim registrosCorrectos As Integer = 0
         Dim registrosIncorrectos As Integer = 0
@@ -166,13 +170,12 @@ Public Class UuidModel
                                             ' Si llegas a tener condiciones específicas de validación, aquí puedes agregarlas
 
                                             ' Marcar el registro en MariaDB como actualizado
-                                            Dim updateMariaDBQuery As String = "UPDATE cfdfacturasemit SET Actualizado = 1 WHERE IdCFDFacturas = ?"
+                                            'Dim updateMariaDBQuery As String = "UPDATE cfdfacturasemit SET Actualizado = 1 WHERE IdCFDFacturas = ?"
 
-                                            Using sqlCommandMariaDB As New OdbcCommand(updateMariaDBQuery, mariaDBConnection)
-                                                sqlCommandMariaDB.Parameters.AddWithValue("@IdCFDFacturas", idCfdFacturas)
-                                                sqlCommandMariaDB.ExecuteNonQuery()
-                                            End Using
-
+                                            'Using sqlCommandMariaDB As New OdbcCommand(updateMariaDBQuery, mariaDBConnection)
+                                            '    sqlCommandMariaDB.Parameters.AddWithValue("@IdCFDFacturas", idCfdFacturas)
+                                            '    sqlCommandMariaDB.ExecuteNonQuery()
+                                            'End Using
 
                                             ' Validar el resultado del update
                                             ' Si llegas a tener condiciones específicas de validación, aquí puedes agregarlas
@@ -203,7 +206,7 @@ Public Class UuidModel
                                 End Using
 
                                 ' Actualizar el progreso
-                                progressBar.Invoke(Sub() progressBar.Value += 1)
+                                'progressBar.Invoke(Sub() progressBar.Value += 1)
 
                                 ' Si el registro no fue procesado correctamente, puedes manejarlo aquí según tus necesidades
                                 If Not registroCorrecto Then
