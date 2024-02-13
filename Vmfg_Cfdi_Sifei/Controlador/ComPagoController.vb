@@ -59,16 +59,16 @@ Public Class ComPagoController
                                 cobro.Campo7 = reader.GetString(7)
                             End If
                             If Not reader.IsDBNull(8) Then
-                                cobro.Campo7 = reader.GetString(8)
+                                cobro.Campo8 = reader.GetString(8)
                             End If
                             If Not reader.IsDBNull(9) Then
-                                cobro.Campo7 = reader.GetString(9)
+                                cobro.Campo9 = reader.GetString(9)
                             End If
                             If Not reader.IsDBNull(10) Then
                                 cobro.Campo10 = reader.GetString(10)
                             End If
                             If Not reader.IsDBNull(11) Then
-                                cobro.Campo10 = reader.GetString(11)
+                                cobro.Campo11 = reader.GetString(11)
                             End If
                             If Not reader.IsDBNull(12) Then
                                 cobro.Campo12 = reader.GetString(12)
